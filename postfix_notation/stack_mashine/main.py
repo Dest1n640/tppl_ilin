@@ -1,4 +1,5 @@
 import operator
+import sys
 
 class Stack:
 
@@ -74,14 +75,17 @@ def stack_mashine(expression: str):
       raise ValueError(f"Недопустимый символ '{val}' (позиция {ind})")
     print(f"{ind}: {stack}")
 
-  if stack.size() != 1:
-    raise ValueError(
-      f"В выражении лишние операнды, на стеке осталось {stack.size()} значений"
-    )
   return stack.pop()
 
 
 if __name__ == "__main__":
-  expression = input("Введите выражение, записанное в постфиксной нотации через пробел : ")
-  result = stack_mashine(expression)
+  if len(sys.argv) < 2:
+    sys.exit(1)
+
+  expression = " ".join(sys.argv[1:])
+  try:
+    result = stack_mashine(expression)
+  except (TypeError, ValueError, ZeroDivisionError) as error:
+    print(f"Ошибка: {error}")
+    sys.exit(1)
   print(f"{expression} = {result}")

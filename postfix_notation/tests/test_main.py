@@ -1,5 +1,3 @@
-import runpy
-
 import pytest
 
 from stack_mashine import stack_mashine, Stack
@@ -53,6 +51,9 @@ class TestStack:
       ("4 4 ~", 0),
       ("3 5 0 ~ +", 12),
       ("5 2 ~ 4+", 7),
+      ("3 0 4 ~ 2 ~", 7),
+      ("2 2 + 4 - 4 ~ 2 3 * +", 6),
+      ("1 2 3 +", 5),  # результат - вершина стека
     ]
 )
 def test_stack_mashine(expression, expected):
@@ -68,7 +69,6 @@ def test_stack_mashine(expression, expected):
       ("~", ValueError),
       ("1 ~", ValueError),
       ("1 2 a +", ValueError),
-      ("1 2 3 +", ValueError),
       ("5 0 /", ZeroDivisionError),
     ]
 )
