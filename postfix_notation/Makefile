@@ -15,7 +15,7 @@ install:
 run-examples:
 	@for expr in $(EXAMPLES); do \
 		echo "== $$expr"; \
-		uv run python stack_mashine/main.py "$$expr"; \
+		uv run python stack_machine/main.py "$$expr"; \
 	done
 
 ifeq ($(firstword $(MAKECMDGOALS)),run)
@@ -26,13 +26,13 @@ endif
 
 run:
 	@test -n "$(RUN_ARGS)" || { echo 'Использование: make run "<выражение>"'; exit 1; }
-	@uv run python stack_mashine/main.py $(foreach arg,$(RUN_ARGS),'$(arg)')
+	@uv run python stack_machine/main.py $(foreach arg,$(RUN_ARGS),'$(arg)')
 
 test:
 	uv run pytest tests -v
 
 coverage:
-	uv run coverage run --source=stack_mashine -m pytest tests -q
+	uv run coverage run --source=stack_machine -m pytest tests -q
 	uv run coverage report -m
 
 clean:
