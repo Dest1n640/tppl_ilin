@@ -60,7 +60,9 @@ def stack_machine(expression: str):
                 if first_val != 0 and second_val != 0:
                     stack.push(abs(first_val - second_val))
                 else:
-                    stack.push(stack.sum()**2)
+                    total = first_val + second_val + stack.sum()
+                    stack.items.clear()
+                    stack.push(total**2)
             else:
                 try:
                     stack.push(ops[val](second_val, first_val))

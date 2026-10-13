@@ -8,3 +8,6 @@ dependencies = [
     "coverage>=7.16.2",
     "pytest>=9.1.1",
 ]
+
+[tool.coverage.report]
+exclude_also = ['if __name__ == "__main__":']
