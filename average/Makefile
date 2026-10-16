@@ -4,6 +4,7 @@ LD = ld
 TARGET = average
 SRC = main.asm
 OBJ = main.o
+FILE = data.txt
 
 .PHONY: all run clean
 
@@ -16,7 +17,7 @@ $(OBJ): $(SRC)
 	$(ASM) $(ASMFLAGS) $(SRC) -o $(OBJ)
 
 run: $(TARGET)
-	./$(TARGET) data.txt
+	./$(TARGET) $(FILE)
 
 clean:
 	rm -f $(OBJ) $(TARGET)
