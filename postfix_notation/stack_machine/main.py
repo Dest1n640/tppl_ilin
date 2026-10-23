@@ -3,7 +3,6 @@ import sys
 
 
 class Stack:
-
     def __init__(self):
         self.items = []
 
@@ -30,10 +29,11 @@ class Stack:
 def stack_machine(expression: str):
     stack = Stack()
     ops = {
-        '+': operator.add,
-        '-': operator.sub,
-        '*': operator.mul,
-        '/': operator.truediv,
+        "+": operator.add,
+        "-": operator.sub,
+        "*": operator.mul,
+        "/": operator.truediv,
+        "!": operator.pow,
     }
     if not isinstance(expression, str):
         raise TypeError("Выражение должно быть строкой")
@@ -63,11 +63,15 @@ def stack_machine(expression: str):
                     total = first_val + second_val + stack.sum()
                     stack.items.clear()
                     stack.push(total**2)
+            elif val == "!":
+                stack.push(first_val**second_val)
             else:
                 try:
                     stack.push(ops[val](second_val, first_val))
                 except ZeroDivisionError:
-                    raise ZeroDivisionError(f"Деление на ноль (позиция {ind})") from None
+                    raise ZeroDivisionError(
+                        f"Деление на ноль (позиция {ind})"
+                    ) from None
         else:
             raise ValueError(f"Недопустимый символ '{val}' (позиция {ind})")
         print(f"{ind}: {stack}")
