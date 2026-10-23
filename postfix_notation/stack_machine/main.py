@@ -63,8 +63,6 @@ def stack_machine(expression: str):
                     total = first_val + second_val + stack.sum()
                     stack.items.clear()
                     stack.push(total**2)
-            elif val == "!":
-                stack.push(first_val**second_val)
             else:
                 try:
                     stack.push(ops[val](second_val, first_val))
