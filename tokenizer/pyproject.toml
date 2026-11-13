@@ -1,0 +1,11 @@
+[project]
+name = "tokenizer"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "pytest",
+    "coverage",
+]
+
+[tool.coverage.report]
+exclude_also = ['if __name__ == "__main__":']
